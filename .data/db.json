@@ -1,0 +1,77 @@
+{
+  "creatureMap": [
+    {
+      "id": 1,
+      "job": {
+        "fighter": {
+          "key": "Fighter",
+          "jobName": "戰士"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "race": {
+        "key": "People",
+        "name": "人類"
+      },
+      "job": {
+        "fighter": {
+          "key": "KindFighter",
+          "jobName": "聖戰士"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "race": {
+        "key": "Monster",
+        "name": "獸人"
+      },
+      "job": {
+        "fighter": {
+          "key": "CruelFighter",
+          "jobName": "狂戰士"
+        }
+      }
+    }
+  ],
+  "users": [
+    {
+      "name": "admin",
+      "id": 1,
+      "character": "admin"
+    },
+    {
+      "name": "Jack",
+      "sex": "1",
+      "exp": "250",
+      "life": "35",
+      "race": "1",
+      "id": 2
+    },
+    {
+      "name": "Mary",
+      "sex": "0",
+      "exp": "105",
+      "life": "30",
+      "race": "2",
+      "id": 3
+    }
+  ],
+  "messages": [
+    {
+      "content": "Hello",
+      "userId": "2",
+      "sendTime": "2019-08-26 22:04:43",
+      "id": 1,
+      "updateTime": "2019-08-27 23:24:04"
+    },
+    {
+      "content": "Hi",
+      "userId": "3",
+      "sendTime": "2019-08-27 23:24:43",
+      "id": 2
+    }
+  ]
+}

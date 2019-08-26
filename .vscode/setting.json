@@ -1,0 +1,25 @@
+{
+	"editor.fontFamily": "Fira Code,Microsoft JhengHei",
+	"editor.fontLigatures": true,
+
+	"editor.fontSize": 14,
+	"window.zoomLevel": 0,
+
+	"editor.rulers": [80, 120],
+	"prettier.printWidth": 120,
+	"prettier.singleQuote": true,
+
+	"explorer.openEditors.visible": 0,
+
+	"files.autoSave": "afterDelay",
+	"editor.formatOnSave": true,
+
+	"editor.tabSize": 2,
+	"editor.insertSpaces": true,
+
+	"emmet.triggerExpansionOnTab": true,
+
+	"liveServer.settings.donotShowInfoMsg": true,
+	"liveServer.settings.ignoreFiles": [".vscode/**", ".data/**"]
+}
+  

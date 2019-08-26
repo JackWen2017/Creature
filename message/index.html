@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Message</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <div id="app">
+    <h2>留言區</h2>
+    <form method="post" id="msgForm">
+      <select name="user" class="text" id="selectUser"> </select>
+      <input type="text" name="content" class="text inputContent" />
+      <input type="submit" value="送出留言" class="btn" />
+    </form>
+    <input type="button" value="角色創建" id="creature" class="btn" />
+    <div id="box" class="box"></div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="../js/data.js"></script>
+  <script src="../js/creature.js"></script>
+  <script src="./message.js"></script>
+</body>
+</html>

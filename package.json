@@ -1,0 +1,10 @@
+{
+  "name": "creature",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "db": "json-server --watch .data/db.json"
+  },
+  "author": "Jack",
+  "license": "ISC"
+}

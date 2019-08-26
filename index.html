@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Creature</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="box">
+        <h2>角色創建</h2>
+        <form method="post" id="infoForm">
+          姓名:<input type="text" name="name" class="text" id="inputName" /><br />
+          性別:<input type="radio" name="sex" value="0" class="radio" checked /> 女
+          <input type="radio" name="sex" value="1" class="radio" /> 男<br />
+          種族:<select name="race" class="text">
+          <option value="1">人類</option>
+          <option value="2">獸人</option> </select
+          ><br />
+          <input type="submit" value="創建角色" class="btn" />
+        </form>
+
+        <div id="infoShow"></div>
+
+        <input type="button" value="留言區" id="message" class="btn" />
+        <p>
+          *如果角色名字已經創建過，則會讀出舊角色資料(無法更改舊性別與舊種族)
+        </p>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="./js/data.js"></script>
+    <script src="./js/creature.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>
