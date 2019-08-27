@@ -3,7 +3,8 @@
   let roleList = [];
   let showMsgs = null;
   let nowMsg = null;
-
+  let isAdmin = false
+  
   let addZero = function(str = '', len = 0) {
     str += '';
     let strLen = str.length;
@@ -29,8 +30,8 @@
   };
 
   let filterRoleData = function(role) {
-    let { id, name, character } = role;
-    return { id, name, character };
+    let { id, name } = role;
+    return { id, name };
   };
 
   let getRole = async function(name) {
@@ -39,6 +40,7 @@
     let tmpRole = role.responseJSON[0] || null;
     if (tmpRole) {
       nowRole = filterRoleData(tmpRole);
+      isAdmin = tmpRole.character === 'admin';
     }
   };
 
@@ -65,7 +67,7 @@
     return inputOk;
   };
 
-  let awayForEach = async function(arr, fun) {
+  let awaitForEach = async function(arr, fun) {
     for (let i = 0; i < arr.length; i++) {
       await fun(arr[i], i, arr);
     }
@@ -77,7 +79,7 @@
     await roles;
     await msgs;
     let roleTmpList = roles.responseJSON || [];
-    await awayForEach(roleTmpList, role => {
+    await awaitForEach(roleTmpList, role => {
       roleList.push(filterRoleData(role));
     });
     showMsgs = msgs.responseJSON || [];
@@ -135,7 +137,8 @@
       let updateTime = nowTime();
       let data = {
         content,
-        updateTime
+        updateTime,
+        editor : nowRole.name
       };
       if (messageId !== 0) {
         data.id = messageId;
@@ -146,6 +149,7 @@
       if (showArryMsg) {
         showArryMsg[0].content = content;
         showArryMsg[0].updateTime = updateTime;
+        showArryMsg[0].editor = nowRole.name
       }
     }
     return true;
@@ -204,7 +208,6 @@
   };
 
   let renderSelect = function() {
-    let isAdmin = nowRole.character === 'admin';
     let option = '';
     if (isAdmin) {
       roleList.forEach(role => {
@@ -221,18 +224,18 @@
 
   let renderView = function() {
     let boxMsg = '';
-    let isAdmin = nowRole.character === 'admin';
     if (showMsgs !== null && showMsgs.length > 0) {
       showMsgs.forEach((msg, key) => {
         let msgClass = key % 2 === 0 ? 'msgleft' : 'msgright';
-        let thisUser = roleList.filter(r => r.id == msg.userId);
-        let userName = thisUser && thisUser.length > 0 ? thisUser[0].name : 'NoName';
+        let thisUser = roleList.filter(r => r.id == msg.userId)[0];
+        let userName = thisUser.name || 'NoName';
+        let editor = msg.editor || userName
         let canEdit = isAdmin || userName === nowRole.name;
         let contentBtn = '<div class="contentbtn delete"></div><div class="contentbtn edit"></div>';
         let content = canEdit ? contentBtn : '';
         let time = `Send:${msg.sendTime}` + (msg.updateTime ? `/ Update:${msg.updateTime}` : '');
         boxMsg += `<div class="${msgClass}" id="msg_${msg.id}">
-                  <div class="user">${userName}</div>
+                  <div class="user">${userName} (${editor})</div>
                   <div class="content">
                   ${content}
                   <p class="pContent">${msg.content}</p>
@@ -264,7 +267,8 @@
         let data = {
           content,
           userId,
-          sendTime
+          sendTime,
+          editor : nowRole.name
         };
 
         let result = saveAndUpdateMsg(data).fail(err => console.log(err));
